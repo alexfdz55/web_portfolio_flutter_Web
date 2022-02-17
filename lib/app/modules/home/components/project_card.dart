@@ -17,14 +17,14 @@ class ProjectCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            project.title!,
+            project.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.subtitle2,
           ),
           Spacer(),
           Text(
-            project.description!,
+            project.description,
             maxLines: Responsive.isMobileLarge(context) ? 3 : 4,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(height: 1.5),
@@ -33,15 +33,13 @@ class ProjectCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              project.namImg != null
-                  ? Container(
-                      height: 80,
-                      child: Image.asset(
-                        "assets/proyects/${project.namImg}",
-                        fit: BoxFit.cover,
-                      ),
-                    )
-                  : Container(),
+              Container(
+                height: 80,
+                child: Image.asset(
+                  "assets/proyects/${project.namImg}",
+                  fit: BoxFit.cover,
+                ),
+              ),
               TextButton(
                 onPressed: () {},
                 child: Text(

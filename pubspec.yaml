@@ -10,6 +10,8 @@ dependencies:
   get: 4.5.1
   flutter_svg: ^0.22.0
   animated_text_kit: ^4.2.1
+  hovering: ^1.0.4
+  # flutter_swiper_null_safety: ^1.0.2
   # url_launcher: ^6.0.4
   
 
@@ -24,8 +26,9 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/
     - assets/icons/
     - assets/images/
     - assets/proyects/
-    - assets/apps/
+    
 

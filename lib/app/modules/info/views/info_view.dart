@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:web_portfolio/app/modules/home/components/app_info_card.dart';
+import 'package:web_portfolio/app/modules/info/components/swiper.dart';
 
 import '../controllers/info_controller.dart';
 
@@ -12,12 +12,10 @@ class InfoView extends GetView<InfoController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('InfoView'),
+        title: Text(_.appInfo!.title),
         centerTitle: true,
       ),
-      body: Center(
-        child: AppInfoCard(project: _.appInfo!),
-      ),
+      body: Center(child: CardSwiper(app: _.appInfo!)),
     );
   }
 }

@@ -27,9 +27,9 @@ class HomeView extends GetView<HomeController> {
 }
 
 class _MainScreen extends StatelessWidget {
-  const _MainScreen({Key? key, required this.children}) : super(key: key);
-
   final List<Widget> children;
+
+  const _MainScreen({required this.children});
 
   @override
   Widget build(BuildContext context) {

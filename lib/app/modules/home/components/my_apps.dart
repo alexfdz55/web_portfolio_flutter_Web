@@ -15,16 +15,76 @@ class MyApps extends StatelessWidget {
           style: Theme.of(context).textTheme.headline6,
         ),
         const SizedBox(height: defaultPadding),
+
         Responsive(
-          mobile: _ProjectsGridView(
-            crossAxisCount: 1,
-            childAspectRatio: 1.7,
-          ),
-          mobileLarge: _ProjectsGridView(crossAxisCount: 2),
-          tablet: _ProjectsGridView(childAspectRatio: 1.1),
-          desktop: _ProjectsGridView(),
+          mobile: AppsSwiper(),
+          mobileLarge: AppsSwiper(),
+          tablet: AppsSwiperDesktop(),
+          desktop: AppsSwiperDesktop(),
         )
+        // Responsive(
+        //   mobile: _ProjectsGridView(
+        //     crossAxisCount: 1,
+        //     childAspectRatio: 1.7,
+        //   ),
+        //   mobileLarge: _ProjectsGridView(crossAxisCount: 2),
+        //   tablet: _ProjectsGridView(childAspectRatio: 1.1),
+        //   desktop: _ProjectsGridView(),
+        // )
       ],
+    );
+  }
+}
+
+// class AppsSwiper extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: 600,
+//       child: ListView.separated(
+//         scrollDirection: Axis.vertical,
+//         itemBuilder: (context, i) => Row(
+//           children: [
+//             AppInfoCard(project: apps[i]),
+//             AppInfoCard(project: apps[i + 1]),
+//           ],
+//         ),
+//         itemCount: apps.length,
+//         separatorBuilder: (_, index) => SizedBox(width: 5),
+//       ),
+//     );
+//   }
+// }
+
+class AppsSwiper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: apps.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 0.5,
+        crossAxisSpacing: defaultPadding,
+        mainAxisSpacing: defaultPadding,
+      ),
+      itemBuilder: (context, index) => AppInfoCard(app: apps[index]),
+    );
+  }
+}
+
+class AppsSwiperDesktop extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 600,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, i) => AppInfoCard(app: apps[i]),
+        itemCount: apps.length,
+        separatorBuilder: (_, index) => SizedBox(width: 5),
+      ),
     );
   }
 }
@@ -51,7 +111,7 @@ class _ProjectsGridView extends StatelessWidget {
         crossAxisSpacing: defaultPadding,
         mainAxisSpacing: defaultPadding,
       ),
-      itemBuilder: (context, index) => AppInfoCard(project: apps[index]),
+      itemBuilder: (context, index) => AppInfoCard(app: apps[index]),
     );
   }
 }

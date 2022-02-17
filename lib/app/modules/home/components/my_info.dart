@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:web_portfolio/app/shared/constant.dart';
 
 class MyInfo extends StatelessWidget {
-  const MyInfo({
-    Key? key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 1.23,
       child: Container(
-        color: Color(0xFF242430),
+        color: bgColor2,
         child: Column(
           children: [
             Spacer(flex: 2),

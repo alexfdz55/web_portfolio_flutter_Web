@@ -11,7 +11,7 @@ class MyProjects2 extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Mis Proyectos Flutter",
+          "Proyectos Académicos",
           style: Theme.of(context).textTheme.headline6,
         ),
         const SizedBox(height: defaultPadding),
