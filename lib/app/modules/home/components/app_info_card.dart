@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:web_portfolio/app/data/models/models/Project.dart';
+import 'package:web_portfolio/app/routes/app_pages.dart';
 import 'package:web_portfolio/app/shared/constant.dart';
 import 'package:web_portfolio/app/shared/responsive/responsive.dart';
 
@@ -43,11 +45,9 @@ class AppInfoCard extends StatelessWidget {
                     )
                   : Container(),
               TextButton(
-                onPressed: () {},
-                child: Text(
-                  "Más detalles >>",
-                  style: TextStyle(color: primaryColor),
-                ),
+                child: Text("Más detalles >>",
+                    style: TextStyle(color: primaryColor)),
+                onPressed: () => Get.toNamed(Routes.INFO, arguments: project),
               ),
             ],
           ),

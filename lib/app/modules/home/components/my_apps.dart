@@ -4,7 +4,7 @@ import 'package:web_portfolio/app/shared/constant.dart';
 import 'package:web_portfolio/app/shared/responsive/responsive.dart';
 import 'app_info_card.dart';
 
-class MyProjects extends StatelessWidget {
+class MyApps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(

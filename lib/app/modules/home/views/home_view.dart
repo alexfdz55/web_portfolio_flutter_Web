@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:web_portfolio/app/modules/home/components/home_banner.dart';
-import 'package:web_portfolio/app/modules/home/components/my_projects.dart';
+import 'package:web_portfolio/app/modules/home/components/my_apps.dart';
 import 'package:web_portfolio/app/modules/home/components/my_proyects2.dart';
 import 'package:web_portfolio/app/modules/home/components/side_menu.dart';
 import 'package:web_portfolio/app/shared/constant.dart';
@@ -17,7 +17,7 @@ class HomeView extends GetView<HomeController> {
       children: [
         HomeBanner(),
         SizedBox(height: 30),
-        MyProjects(),
+        MyApps(),
         SizedBox(height: 40),
         MyProjects2(),
         // Recommendations(),
