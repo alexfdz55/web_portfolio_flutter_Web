@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:web_portfolio/app/data/models/models/Project.dart';
+import 'package:web_portfolio/app/data/models/projects.dart';
 
 class InfoController extends GetxController {
   AppInfo? appInfo;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:web_portfolio/app/data/models/models/Project.dart';
+import 'package:web_portfolio/app/data/models/projects.dart';
 import 'package:web_portfolio/app/modules/home/components/project_card.dart';
 import 'package:web_portfolio/app/shared/constant.dart';
 import 'package:web_portfolio/app/shared/responsive/responsive.dart';
@@ -12,7 +12,7 @@ class MyProjects2 extends StatelessWidget {
       children: [
         Text(
           "Proyectos Académicos",
-          style: Theme.of(context).textTheme.headline6,
+          style: TextStyle(color: primaryColor, fontSize: 20),
         ),
         const SizedBox(height: defaultPadding),
         Responsive(

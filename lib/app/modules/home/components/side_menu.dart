@@ -17,6 +17,7 @@ class SideMenu extends StatelessWidget {
         child: Column(
           children: [
             MyInfo(),
+            SizedBox(height: 10),
             Expanded(
               child: SingleChildScrollView(
                 padding: EdgeInsets.all(defaultPadding),
@@ -68,18 +69,20 @@ class SideMenu extends StatelessWidget {
                           Spacer(),
                           IconButton(
                             icon: SvgPicture.asset("assets/icons/github.svg"),
-                            onPressed: () {
-                              // _launchURL('https://github.com/alexfdz55');
-                            },
+                            onPressed: () {},
+                            // onPressed: () =>
+                            //     _launchURL('https://github.com/alexfdz55'),
                           ),
                           IconButton(
                             icon: SvgPicture.asset("assets/icons/telegram.svg"),
-                            onPressed: () async {},
-                          ),
-                          IconButton(
                             onPressed: () {},
-                            icon: SvgPicture.asset("assets/icons/twitter.svg"),
+                            // onPressed: () =>
+                            //     _launchURL('https://t.me/alexfdz55'),
                           ),
+                          // IconButton(
+                          //   onPressed: () {},
+                          //   icon: SvgPicture.asset("assets/icons/twitter.svg"),
+                          // ),
                           Spacer(),
                         ],
                       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hovering/hovering.dart';
-import 'package:web_portfolio/app/data/models/models/Project.dart';
+import 'package:web_portfolio/app/data/models/projects.dart';
 import 'package:web_portfolio/app/shared/constant.dart';
 import 'package:web_portfolio/app/shared/responsive/responsive.dart';
 
@@ -11,24 +11,33 @@ class CardSwiper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final kWidth = MediaQuery.of(context).size.width;
+
+    final contentTablet = Column(
+      children: [
+        _Info(app: app),
+        _AppsSwiperDesktop(app: this.app),
+      ],
+    );
+    final contentMovil = Column(
+      children: [_Info(app: app), _AppsSwiperMovil(app: this.app)],
+    );
+
     return SingleChildScrollView(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
-            child: Text(
-              app.description,
-              style: Theme.of(context).textTheme.headline6,
-            ),
-          ),
-          const SizedBox(height: defaultPadding),
           Responsive(
-            mobile: _AppsSwiper(app: this.app),
-            mobileLarge: _AppsSwiper(app: this.app),
-            tablet: _AppsSwiperDesktop(app: this.app),
-            desktop: _AppsSwiperDesktop(app: this.app),
+            mobile: contentMovil,
+            mobileLarge: contentMovil,
+            tablet: contentTablet,
+            desktop: Row(
+              children: [
+                Expanded(flex: 4, child: _Info(app: app)),
+                Expanded(flex: 6, child: _AppsSwiperDesktop(app: this.app)),
+              ],
+            ),
           ),
         ],
       ),
@@ -36,24 +45,113 @@ class CardSwiper extends StatelessWidget {
   }
 }
 
-class _AppsSwiper extends StatelessWidget {
+class _Info extends StatelessWidget {
   final AppInfo app;
 
-  const _AppsSwiper({required this.app});
+  const _Info({required this.app});
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: app.imgList.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 0.5,
-        crossAxisSpacing: defaultPadding,
-        mainAxisSpacing: defaultPadding,
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+      margin:
+          (Responsive.isMobile(context) || Responsive.isMobileLarge(context))
+              ? const EdgeInsets.only(left: 20, right: 20, top: 30)
+              : const EdgeInsets.only(left: 50, right: 50, top: 30),
+      child: Padding(
+        padding:
+            (Responsive.isMobile(context) || Responsive.isMobileLarge(context))
+                ? const EdgeInsets.only(left: 20, right: 20, top: 30)
+                : const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              'Descripción: ',
+              textAlign: TextAlign.justify,
+              style: TextStyle(color: primaryColor, fontSize: 20),
+            ),
+            SizedBox(height: 10),
+            Text(
+              app.description,
+              textAlign: TextAlign.justify,
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 20),
+            if (app.skills.length != 0)
+              Text(
+                'Principales habilidades: ',
+                textAlign: TextAlign.justify,
+                style: TextStyle(color: primaryColor, fontSize: 20),
+              ),
+            SizedBox(height: 10),
+            Column(
+                children: app.skills.map((item) => new _Skill(item)).toList()),
+            SizedBox(height: 15),
+          ],
+        ),
       ),
-      itemBuilder: (context, i) => _AppInfoCard(this.app.imgList[i]),
+    );
+  }
+}
+
+class _Skill extends StatelessWidget {
+  final String skill;
+
+  const _Skill(this.skill);
+
+  @override
+  Widget build(BuildContext context) {
+    double kWidth = 200;
+
+    if (Responsive.isMobile(context)) {
+      kWidth = kWidth = MediaQuery.of(context).size.width - 140;
+    } else if (Responsive.isMobileLarge(context)) {
+      kWidth = MediaQuery.of(context).size.width - 140;
+    } else if (Responsive.isTablet(context)) {
+      kWidth = MediaQuery.of(context).size.width - 250;
+    } else if (Responsive.isDesktop(context)) {
+      kWidth = MediaQuery.of(context).size.width * 0.4 - 250;
+    }
+
+    return Container(
+      constraints: BoxConstraints(minWidth: 200),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.check_circle_outline, color: primaryColor),
+          SizedBox(width: 20),
+          Container(
+            width: kWidth,
+            child: Text(this.skill),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _AppsSwiperMovil extends StatelessWidget {
+  final AppInfo app;
+
+  const _AppsSwiperMovil({required this.app});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: app.imgList.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.45,
+          crossAxisSpacing: defaultPadding,
+          mainAxisSpacing: defaultPadding,
+        ),
+        itemBuilder: (context, i) => _AppInfoCard(this.app.imgList[i]),
+      ),
     );
   }
 }
@@ -65,6 +163,13 @@ class _AppsSwiperDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 50),
+
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.04),
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+      // width: app.imgList.length * 300,
       height: 600,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,

@@ -1,63 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hovering/hovering.dart';
-import 'package:web_portfolio/app/data/models/models/Project.dart';
+import 'package:web_portfolio/app/data/models/projects.dart';
 import 'package:web_portfolio/app/routes/app_pages.dart';
 import 'package:web_portfolio/app/shared/constant.dart';
-import 'package:web_portfolio/app/shared/responsive/responsive.dart';
-
-class AppInfoCard2 extends StatelessWidget {
-  final AppInfo project;
-
-  const AppInfoCard2({required this.project});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(defaultPadding),
-      color: secondaryColor,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            project.title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.subtitle2,
-          ),
-          Spacer(),
-          Text(
-            project.description,
-            maxLines: Responsive.isMobileLarge(context) ? 3 : 4,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(height: 1.5),
-          ),
-          Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              project.namImg != null
-                  ? Container(
-                      height: 80,
-                      child: Image.asset(
-                        "assets/apps/${project.namImg}",
-                        fit: BoxFit.cover,
-                      ),
-                    )
-                  : Container(),
-              TextButton(
-                child: Text("Más detalles >>",
-                    style: TextStyle(color: primaryColor)),
-                onPressed: () => Get.toNamed(Routes.INFO, arguments: project),
-              ),
-            ],
-          ),
-          Spacer(),
-        ],
-      ),
-    );
-  }
-}
 
 class AppInfoCard extends StatefulWidget {
   final AppInfo app;
@@ -84,10 +30,10 @@ class _AppInfoCardState extends State<AppInfoCard> {
         },
         child: HoverAnimatedContainer(
           cursor: SystemMouseCursors.click,
-          width: 250,
-          height: 500,
-          hoverWidth: 300,
-          hoverHeight: 600,
+          width: 220,
+          height: 450,
+          hoverWidth: 280,
+          hoverHeight: 500,
           child: Stack(
             children: [
               FadeInImage(
@@ -108,7 +54,7 @@ class _AppInfoCardState extends State<AppInfoCard> {
                         'Ver detalles',
                         style: TextStyle(
                             color: primaryColor,
-                            fontSize: 30,
+                            fontSize: 20,
                             fontWeight: FontWeight.w700),
                       ),
                     ),

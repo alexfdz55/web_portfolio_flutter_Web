@@ -12,7 +12,7 @@ dependencies:
   animated_text_kit: ^4.2.1
   hovering: ^1.0.4
   # flutter_swiper_null_safety: ^1.0.2
-  # url_launcher: ^6.0.4
+  # url_launcher: ^6.0.3
   
 
   flutter: 

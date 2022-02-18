@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:web_portfolio/app/data/models/models/Project.dart';
+import 'package:web_portfolio/app/data/models/projects.dart';
 import 'package:web_portfolio/app/shared/constant.dart';
 import 'package:web_portfolio/app/shared/responsive/responsive.dart';
 
@@ -12,7 +12,7 @@ class ProjectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(defaultPadding),
-      color: secondaryColor,
+      color: bgColor2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

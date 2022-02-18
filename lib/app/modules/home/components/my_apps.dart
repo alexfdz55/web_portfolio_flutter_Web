@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:web_portfolio/app/data/models/models/Project.dart';
+import 'package:web_portfolio/app/data/models/projects.dart';
 import 'package:web_portfolio/app/shared/constant.dart';
 import 'package:web_portfolio/app/shared/responsive/responsive.dart';
 import 'app_info_card.dart';
@@ -11,8 +11,8 @@ class MyApps extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Mis Proyectos Flutter",
-          style: Theme.of(context).textTheme.headline6,
+          "Apps desarrolladas con Flutter",
+          style: TextStyle(color: primaryColor, fontSize: 20),
         ),
         const SizedBox(height: defaultPadding),
 
@@ -78,7 +78,7 @@ class AppsSwiperDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 600,
+      height: 500,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, i) => AppInfoCard(app: apps[i]),
@@ -89,29 +89,29 @@ class AppsSwiperDesktop extends StatelessWidget {
   }
 }
 
-class _ProjectsGridView extends StatelessWidget {
-  const _ProjectsGridView({
-    Key? key,
-    this.crossAxisCount = 3,
-    this.childAspectRatio = 1.3,
-  }) : super(key: key);
+// class _ProjectsGridView extends StatelessWidget {
+//   const _ProjectsGridView({
+//     Key? key,
+//     this.crossAxisCount = 3,
+//     this.childAspectRatio = 1.3,
+//   }) : super(key: key);
 
-  final int crossAxisCount;
-  final double childAspectRatio;
+//   final int crossAxisCount;
+//   final double childAspectRatio;
 
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: apps.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        childAspectRatio: childAspectRatio,
-        crossAxisSpacing: defaultPadding,
-        mainAxisSpacing: defaultPadding,
-      ),
-      itemBuilder: (context, index) => AppInfoCard(app: apps[index]),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return GridView.builder(
+//       shrinkWrap: true,
+//       physics: NeverScrollableScrollPhysics(),
+//       itemCount: apps.length,
+//       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//         crossAxisCount: crossAxisCount,
+//         childAspectRatio: childAspectRatio,
+//         crossAxisSpacing: defaultPadding,
+//         mainAxisSpacing: defaultPadding,
+//       ),
+//       itemBuilder: (context, index) => AppInfoCard(app: apps[index]),
+//     );
+//   }
+// }
